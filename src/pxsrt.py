@@ -12,8 +12,19 @@ def main():
             self.upper = upper
             self.reverse = reverse
 
+        def load_image_data(self):
+            try:
+                with Image.open(self.filepath) as img:
+                    self.data = np.asarray(img)
+
+            except FileNotFoundError as e:
+                print(e)
+                exit()
+
     filepath = '../images/tokyo.jpg'
     pxsrt_obj = PxSrt(filepath, 'mode', 'threshold', 'direction', 'upper', 'reverse')
+    pxsrt_obj.load_image_data()
+    # print(pxsrt_obj.data)
 
 
 if __name__ == '__main__':
