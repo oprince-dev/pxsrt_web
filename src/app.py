@@ -8,8 +8,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-
-    return render_template('index.html')
+    img = 'static/tokyo.jpg'
+    return render_template('main.html', img=img)
 
 if __name__ == '__main__':
     app.run(debug=True)
