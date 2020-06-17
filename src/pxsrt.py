@@ -4,7 +4,9 @@ import numpy as np
 
 def main():
     class PxSrt:
-        def __init__(self, filepath, mode, threshold, direction, upper, reverse):
+        def __init__(self, filepath, mode,
+                    threshold, direction, upper,
+                    reverse):
             self.filepath = filepath
             self.mode = mode
             self.threshold = threshold
@@ -21,10 +23,22 @@ def main():
                 print(e)
                 exit()
 
+        def display_original_image(self):
+            img = Image.fromarray(self.data)
+            img.show()
+
     filepath = '../images/tokyo.jpg'
-    pxsrt_obj = PxSrt(filepath, 'mode', 'threshold', 'direction', 'upper', 'reverse')
+    pxsrt_obj = PxSrt(
+            filepath,
+            'mode',
+            'threshold',
+            'direction',
+            'upper',
+            'reverse')
+
     pxsrt_obj.load_image_data()
-    # print(pxsrt_obj.data)
+    print(pxsrt_obj.data)
+    pxsrt_obj.display_original_image()
 
 
 if __name__ == '__main__':
