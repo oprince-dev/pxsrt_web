@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>pxsrt</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Row 1 -->
+      <div class="row">
+        <!-- Toolbar -->
+        <div class="col-sm-4 col-md-6 col-lg-4">
+          <form class="" action="{{ url_for('image') }}" method="POST" enctype="multipart/form-data">
+            <!-- Load Image -->
+            {% block loadFileTool %}{% endblock loadFileTool%}
+            <!-- Mode -->
+            {% block modeTool %}{% endblock modeTool %}
+            <!-- Threshold -->
+            {% block thresholdTool %}{% endblock thresholdTool %}
+            <!-- Direction -->
+            {% block directionTool %}{% endblock directionTool %}
+            <!-- Submit Buttons -->
+            {% block submitButtonTool %}{% endblock submitButtonTool %}
+          </form>
+        </div>
+        <!-- Image Column -->
+        <div class="col-sm-8 col-md-6 col-lg-8">
+          <h3>This is where the image will go</h3>
+        </div>
+      </div>
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>

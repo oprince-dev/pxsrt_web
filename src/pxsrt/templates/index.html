@@ -1,0 +1,57 @@
+{% extends "main.html" %}
+
+{% block loadFileTool %}
+<div class="form-group row" id="loadFileFormGroup">
+  <label class="col-sm-4">Load File:</label>
+  <input class="col-sm-8" type="file" name="userImageFile" id="fileLoadInput">
+</div>
+{% endblock loadFileTool %}
+
+{% block modeTool %}
+<div class="form-group row" id="modeFormGroup">
+  <label class="col-sm-4">Mode:</label>
+  <select name="userMode" class="input-large form-control col-sm-8">
+    <option value>Select a Mode</option>
+    <option value="Hue">Hue</option>
+    <option value="Saturation">Saturation</option>
+    <option value="Value">Value</option>
+  </select>
+</div>
+{% endblock modeTool %}
+
+{% block thresholdTool %}
+<div class="form-group row" id="thresholdFormGroup">
+  <label class="col-sm-4">Threshold:</label>
+  <div class="col-sm-8" id="thresholdSliderContainer">
+    <input name="userThresh" type="range" min="0" max="255" value="0" id="thresholdSlider">
+  </div>
+</div>
+{% endblock thresholdTool %}
+
+{% block directionTool %}
+<div class="form-group row" id="directionFormGroup">
+  <label class="col-sm-4">Direction:</label>
+  <div class="form-group col-sm-8 directionCheckBoxGroup">
+    <div class="row" id="horizontalCheckBoxRow">
+      <label class="directionLabel" for="horizontalCheckBox">Horizontal</label>
+      <input name="userH" type="checkbox" id="horizontalCheckBox">
+    </div>
+    <div class="row" id="verticalCheckBoxRow">
+      <label class="directionLabel" for="verticalCheckBoxRow">Vertical</label>
+      <input name="userV" type="checkbox" id="verticalCheckBoxRow">
+    </div>
+  </div>
+</div>
+{% endblock directionTool %}
+
+{% block submitButtonTool %}
+<div class="form-group row" id="submitButtonGroup">
+  <button type="submit" name="action" value="preview" id="previewButton"class="btn btn-primary toolButton">Preview</button>
+  <button type="submit" name="action" value="sort" id="submitButton" class="btn btn-primary toolButton">Sort</button>
+  <button type="submit" name="action" value="reload" id="reloadButon" class="btn btn-primary toolButton">
+    <svg class="bi bi-bootstrap-reboot" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M1.161 8a6.84 6.84 0 1 0 6.842-6.84.58.58 0 0 1 0-1.16 8 8 0 1 1-6.556 3.412l-.663-.577a.58.58 0 0 1 .227-.997l2.52-.69a.58.58 0 0 1 .728.633l-.332 2.592a.58.58 0 0 1-.956.364l-.643-.56A6.812 6.812 0 0 0 1.16 8zm5.48-.079V5.277h1.57c.881 0 1.416.499 1.416 1.32 0 .84-.504 1.324-1.386 1.324h-1.6zm0 3.75V8.843h1.57l1.498 2.828h1.314L9.377 8.665c.897-.3 1.427-1.106 1.427-2.1 0-1.37-.943-2.246-2.456-2.246H5.5v7.352h1.141z"/>
+    </svg>
+  </button>
+</div>
+{% endblock submitButtonTool %}

@@ -3,4 +3,4 @@ venv
 images
 clipboard
 node_modules
-src/static
+src/pxsrt/static/*
