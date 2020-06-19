@@ -3,7 +3,4 @@ venv
 images
 clipboard
 node_modules
-src/static/bootstrap.min.css
-src/static/bootstrap.min.js
-src/static/bootstrap.min.css
-src/static/tokyo.jpg
+src/static
