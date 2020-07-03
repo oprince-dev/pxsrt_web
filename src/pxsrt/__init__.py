@@ -15,6 +15,8 @@ login_manager.login_message_category = 'info'
 from pxsrt.users.routes import users
 from pxsrt.images.routes import images
 from pxsrt.main.routes import main
+from pxsrt.errors.handlers import errors
 app.register_blueprint(users)
 app.register_blueprint(images)
 app.register_blueprint(main)
+app.register_blueprint(errors)

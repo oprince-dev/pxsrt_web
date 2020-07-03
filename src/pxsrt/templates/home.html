@@ -2,12 +2,14 @@
 
 {% block content %}
   <div class="row">
-    {% for upload in uploads %}
-      <div class="img-container col-md-4">
-        <a href="{{ url_for('images.image', upload_id=upload.id) }}">
-          <img class="img-fluid" src="{{ url_for('static', filename='img/uploads/' + upload.filename) }}" alt="">
-        </a>
-      </div>
-    {% endfor %}
+    {% if current_user.is_authenticated %}
+      {% for upload in uploads %}
+        <div class="img-container col-md-4">
+          <a href="{{ url_for('images.image', upload_id=upload.id) }}">
+            <img class="img-fluid" src="{{ url_for('static', filename='img/uploads/' + upload.filename) }}" alt="">
+          </a>
+        </div>
+      {% endfor %}
+    {% endif %}
   </div>
 {% endblock content %}
