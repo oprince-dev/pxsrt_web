@@ -1,0 +1,16 @@
+{% extends "main.html" %}
+{% block content %}
+<form class="content-section" method="post" enctype="multipart/form-data">
+  {{ load_form.errors }}
+  {{ load_form.hidden_tag() }}
+  <div class="form-group row" id="loadImageFormGroup">
+    <label class="col-sm-4">Load File:</label>
+    <div class="col-sm-8">
+      {{ load_form.image }}
+    </div>
+  </div>
+  <div class="form-group row">
+    {{ load_form.load(class="btn btn-primary toolButton") }}
+  </div>
+</form>
+{% endblock content %}

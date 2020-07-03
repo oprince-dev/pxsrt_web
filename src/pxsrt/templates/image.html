@@ -1,0 +1,70 @@
+{% extends "main.html" %}
+
+{% block content %}
+  <img id="imgpg-img" src="{{ url_for('static', filename='img/uploads/' + image.filename) }}" alt="">
+  {% if image.author == current_user %}
+    <div class="update-options">
+      <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal">Delete</button>
+    </div>
+  {% endif %}
+  <!-- Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Delete Image?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <form action="{{ url_for('images.delete_image', image_id=image.id) }}" method="post">
+            <input class="btn btn-danger" type="submit" value="Delete">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+{% block toolbar %}
+  <div class="sidenav" id="toolbar">
+    <form method="post" enctype="multipart/form-data">
+      {{ tools_form.errors }}
+      {{ tools_form.hidden_tag() }}
+      <div class="form-group row" id="modeFormGroup">
+        {{ tools_form.mode.label(class="col-sm-4") }}
+        {{ tools_form.mode(class="col-sm-8 input-large form-control") }}
+      </div>
+      <div class="form-group row" id="thresholdFormGroup">
+        {{ tools_form.threshold.label(class="col-sm-4") }}
+        {{ tools_form.threshold(min=0, max=255, class="col-sm-8") }}
+      </div>
+      <div class="form-group row" id="directionFormGroup">
+        {{ tools_form.direction.label(class="col-sm-4") }}
+        <div class="form-group col-sm-8 directionRadioGroup">
+          {% for d in tools_form.direction %}
+          <div class="row">
+            {{ d }}
+            {{ d.label }}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="form-group row" id="upperFormGroup">
+        {{ tools_form.upper.label(class="col-sm-4") }}
+        {{ tools_form.upper(class="col-sm-8") }}
+      </div>
+      <div class="form-group row" id="reverseFormGroup">
+        <!-- <label class="col-sm-4">Reverse:</label> -->
+        {{ tools_form.reverse.label(class="col-sm-4") }}
+        {{ tools_form.reverse(class="col-sm-8") }}
+      </div>
+      <div class="form-group row" id="submitButtonGroup">
+        {{ tools_form.preview(class="btn btn-primary toolButton", value="preview") }}
+        {{ tools_form.sort(class="btn btn-primary toolButton", value="sort") }}
+        {{ tools_form.refresh(class="btn btn-primary toolButton", value="refresh") }}
+      </div>
+    </form>
+  </div>
+{% endblock toolbar %}

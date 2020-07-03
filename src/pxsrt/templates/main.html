@@ -11,29 +11,45 @@
     <title>pxsrt</title>
   </head>
   <body>
-    <div class="container">
-      <!-- Row 1 -->
-      <div class="row">
-        <!-- Toolbar -->
-        <div class="col-sm-4 col-md-6 col-lg-4">
-          <form class="" action="{{ url_for('image') }}" method="POST" enctype="multipart/form-data">
-            <!-- Load Image -->
-            {% block loadFileTool %}{% endblock loadFileTool%}
-            <!-- Mode -->
-            {% block modeTool %}{% endblock modeTool %}
-            <!-- Threshold -->
-            {% block thresholdTool %}{% endblock thresholdTool %}
-            <!-- Direction -->
-            {% block directionTool %}{% endblock directionTool %}
-            <!-- Submit Buttons -->
-            {% block submitButtonTool %}{% endblock submitButtonTool %}
-          </form>
+    <div class="wrapper">
+      {% if current_user.is_authenticated %}
+      <nav class="sidenav" id="left-sidenav">
+        <div class="sidenav-header">
+          <img src="{{ url_for('static', filename='icons/octicons-three-bars.svg') }}" id="sidebarCollapse" alt="">
         </div>
-        <!-- Image Column -->
-        <div class="col-sm-8 col-md-6 col-lg-8">
-          <h3>This is where the image will go</h3>
+
+        <ul class="list-unstyled components">
+          <li class="menu-items">
+            <a href="#uploadsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Uploads</a>
+            <ul class="collapse list-unstyled" id="uploadsSubmenu">
+              {% for upload in uploads %}
+              <li>
+                <a href="{{ url_for('images.image', upload_id=upload.id) }}">
+                  {{ upload.filename }}
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      {% endif %}
+      <main class="container container-lg-border">
+        {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{category}}">
+          {{message}}
         </div>
-      </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock content %}
+      </main>
+      {% if current_user.is_authenticated %}
+        {% block toolbar %}{% endblock toolbar %}
+      {% endif %}
+    </div>
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>

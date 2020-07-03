@@ -1,0 +1,25 @@
+{% extends "main.html" %}
+{% block content %}
+  <div class="content">
+    <div class="row" id="upload-img-row">
+      <form class="upload-img-form" method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+          <legend class="mb-5">Upload Image</legend>
+          <div class="form-group">
+            {{ form.file.label() }}
+            {{ form.file(class="form-control-file") }}
+            {% if form.file.errors %}
+              {% for error in form.file.errors %}
+                <span class="danger">{{ error }}</span><br>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </fieldset>
+        <div class="form-group" id="uploadImageButton">
+          {{ form.submit(class="btn btn-primary") }}
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock content %}

@@ -1,0 +1,110 @@
+body {
+  background: #333;
+}
+
+header a {
+  color:white;
+}
+header a:hover {
+  color:grey;
+}
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  align-items: stretch;
+}
+
+
+.content {
+  background: white;
+  padding: 20px 30px;
+  margin: 0%;
+  width: 100%;
+}
+
+#loginButton, #registerButton {
+  margin-bottom: 30px;
+}
+
+legend {
+  margin-bottom: 10px
+}
+
+.alert {
+  width: 100%;
+}
+
+.user-info {
+  padding-left: 20px;
+}
+
+#user-info-row {
+  margin: 0 0 30px;
+}
+
+.img-container {
+  height: 33%;
+  overflow: hidden;
+  position: relative;
+}
+
+#imgpg-img {
+  max-height: 75vh;
+}
+
+.sidenav {
+  height: 100%;
+  background-color: #111;
+}
+
+#left-sidenav {
+  width: 200px;
+  position: fixed;
+  left: 0;
+  padding: 0px;
+}
+
+.menu-items {
+  padding: 10px;
+}
+
+#left-sidenav li a {
+  color: white;
+  line-height: 1.6em
+}
+
+#left-sidenav a:hover {
+  text-decoration: none;
+  color: #888
+}
+
+#uploadsSubmenu {
+  margin-left: 20px;
+}
+
+#left-sidenav.active {
+  width: 75px;
+}
+
+#left-sidenav .sidenav-header {
+  width: 100%;
+  text-align: right;
+}
+.sidenav-header img {
+  width: 25px;
+}
+
+.dropdown-toggle {
+  font-size: 1.3em;
+  margin-bottom: 10px;
+}
+
+#toolbar {
+  width: 500px;
+  position: fixed;
+  right: 0;
+  padding: 10px 25px;
+  color: white;
+}
