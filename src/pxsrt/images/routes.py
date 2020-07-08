@@ -2,6 +2,7 @@ from flask import render_template, url_for, flash, redirect, request, abort, Blu
 from flask_login import current_user, login_required
 from pxsrt import db
 from pxsrt.models import Upload
+from pxsrt.images.utils import crop_thumbnail, save_image, instantiate_pxsrt_obj
 from pxsrt.images.forms import UploadForm, ToolsForm
 
 
@@ -21,11 +22,6 @@ def upload():
             return redirect(url_for('main.home'))
     return render_template('upload.html', title='File', form=form)
 
-def instantiate_pxsrt_obj(filename):
-    file = os.path.join(app.config['UPLOADED_IMAGES_DEST'], filename)
-    pxsrt_obj = PxSrt(file)
-
-    return pxsrt_obj
 
 @images.route('/image/<int:upload_id>', methods=['GET', 'POST'])
 @login_required

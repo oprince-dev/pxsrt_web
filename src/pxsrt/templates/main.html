@@ -11,48 +11,28 @@
     <title>pxsrt</title>
   </head>
   <body>
-    <div class="wrapper">
-      {% if current_user.is_authenticated %}
-      <nav class="sidenav" id="left-sidenav">
-        <div class="sidenav-header">
-          <img src="{{ url_for('static', filename='icons/octicons-three-bars.svg') }}" id="sidebarCollapse" alt="">
-        </div>
+    {% if current_user.is_authenticated %}
+      {% block leftSideNav %}{% endblock leftSideNav %}
+      {% block toolbar %}{% endblock toolbar %}
+    {% endif %}
 
-        <ul class="list-unstyled components">
-          <li class="menu-items">
-            <a href="#uploadsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Uploads</a>
-            <ul class="collapse list-unstyled" id="uploadsSubmenu">
-              {% for upload in uploads %}
-              <li>
-                <a href="{{ url_for('images.image', upload_id=upload.id) }}">
-                  {{ upload.filename }}
-                </a>
-              </li>
-              {% endfor %}
-            </ul>
-          </li>
-        </ul>
-      </nav>
-      {% endif %}
-      <main class="container container-lg-border">
-        {% with messages = get_flashed_messages(with_categories=True) %}
+    <main class="container container-lg-border">
+      {% with messages = get_flashed_messages(with_categories=True) %}
         {% if messages %}
-        {% for category, message in messages %}
-        <div class="alert alert-{{category}}">
-          {{message}}
-        </div>
-        {% endfor %}
+          {% for category, message in messages %}
+          <div class="alert alert-{{category}}">
+            {{message}}
+          </div>
+          {% endfor %}
         {% endif %}
-        {% endwith %}
-        {% block content %}{% endblock content %}
-      </main>
-      {% if current_user.is_authenticated %}
-        {% block toolbar %}{% endblock toolbar %}
-      {% endif %}
-    </div>
-    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+      {% endwith %}
+
+      {% block content %}{% endblock content %}
+
+    </main>
+  <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
   </body>
 </html>

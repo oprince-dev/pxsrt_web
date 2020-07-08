@@ -16,11 +16,15 @@ def crop_thumbnail(upload):
 
 
 def save_image(upload, folder):
-    random_hex = secrets.token_hex(8)
-    _, ext = os.path.splitext(upload.filename)
-    filename = random_hex + ext
-    path = os.path.join(app.root_path, 'static/img/' + folder, filename)
+    path = os.path.join(app.root_path, 'static/img/' + folder, upload.filename)
     if folder == 'profpics':
         upload = crop_thumbnail(upload)
     upload.save(path)
-    return filename
+    return upload.filename
+
+
+def instantiate_pxsrt_obj(filename):
+    file = os.path.join(app.config['UPLOADED_IMAGES_DEST'], filename)
+    pxsrt_obj = PxSrt(file)
+
+    return pxsrt_obj

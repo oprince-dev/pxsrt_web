@@ -1,6 +1,31 @@
+:root {
+  font-size: 16px;
+  --text-primary: #fff;
+  --bg-primary: #333;
+  --bg-secondary: #111;
+  --transition-speed: 100ms;
+}
+
 body {
   background: #333;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
 }
+
+body::-webkit-scrollbar {
+  width: 0.25rem
+}
+
+body::-webkit-scrollbar-track {
+  background: #ececec;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #111;
+}
+
 
 header a {
   color:white;
@@ -9,19 +34,22 @@ header a:hover {
   color:grey;
 }
 
-.wrapper {
+/* .wrapper {
   display: flex;
   width: 100%;
   height: 100vh;
   align-items: stretch;
-}
-
+} */
 
 .content {
   background: white;
   padding: 20px 30px;
   margin: 0%;
   width: 100%;
+}
+
+.container {
+  padding-top: 30px;
 }
 
 #loginButton, #registerButton {
@@ -54,57 +82,89 @@ legend {
   max-height: 75vh;
 }
 
-.sidenav {
-  height: 100%;
-  background-color: #111;
+
+.sidebar {
+  z-index: 1;
+  height: 100vh;
+  background-color: var(--bg-secondary);
+}
+
+/* Left Side Nav */
+.navbar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #left-sidenav {
-  width: 200px;
+  width: 5rem;
   position: fixed;
   left: 0;
-  padding: 0px;
+  transition: width 200ms ease;
 }
 
-.menu-items {
-  padding: 10px;
+.nav-item {
+  width: 100%;
+  padding-left: 1rem;
+}
+
+.nav-item:hover {
+  background-color: black;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  color: var(--text-primary);
+  filter: opacity(0.8);
+  transition: var(--transition-sped);
+}
+
+.nav-link:hover {
+  filter: opacity(1);
+}
+
+.nav-profpic-container {
+  min-width: 3rem;
+  min-height: 3rem;
+  background: var(--text-primary);
+  border-radius: 1.5rem;
+}
+
+.nav-link-icon {
+  min-width: 3rem;
+}
+
+.link-text {
+  opacity: 0;
+  margin-left: 2rem;
+  font-size: 1.25em;
+  transition: opacity 75ms ease;
+}
+
+#left-sidenav:hover {
+  width: 15rem;
+}
+
+#left-sidenav:hover .link-text {
+  opacity: 1;
 }
 
 #left-sidenav li a {
-  color: white;
+  color: var(--text-primary);
   line-height: 1.6em
 }
 
-#left-sidenav a:hover {
-  text-decoration: none;
-  color: #888
-}
+/* End Left Side Nav */
 
-#uploadsSubmenu {
-  margin-left: 20px;
-}
-
-#left-sidenav.active {
-  width: 75px;
-}
-
-#left-sidenav .sidenav-header {
-  width: 100%;
-  text-align: right;
-}
-.sidenav-header img {
-  width: 25px;
-}
-
-.dropdown-toggle {
-  font-size: 1.3em;
-  margin-bottom: 10px;
-}
 
 #toolbar {
-  width: 500px;
+  width: 30rem;
   position: fixed;
   right: 0;
-  padding: 10px 25px;
   color: white;
 }
