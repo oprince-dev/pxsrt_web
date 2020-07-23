@@ -137,6 +137,7 @@ legend {
 
 .nav-link-icon {
   min-width: 3rem;
+  fill: white;
 }
 
 .link-text {

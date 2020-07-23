@@ -1,5 +1,5 @@
 {% extends "main.html" %}
-
+{% include "leftSideNav.html" %}
 {% block content %}
   <img id="imgpg-img" src="{{ url_for('static', filename='img/uploads/' + image.filename) }}" alt="">
   {% if image.author == current_user %}
