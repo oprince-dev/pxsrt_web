@@ -1,8 +1,7 @@
 import os
 
 class Config:
-    #secret key added to env (looking into if it's best practice)
-    SECRET_KEY = os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
+    SECRET_KEY = '19876e6891d3a956529578b0e5d34a88'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///site.db'
     UPLOADED_IMAGES_DEST = 'pxsrt/static/img/uploads/'
     MAX_CONTENT_LENGTH = 16 * 1024 * 1024
