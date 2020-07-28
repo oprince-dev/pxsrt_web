@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-sm" id="topNav">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a href="#">PxSrt</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      {% if current_user.is_authenticated %}
+        <li class="">
+          <a class="" href="{{ url_for('users.account') }}">Account</a>
+        </li>
+        <li class="">
+          <a class="" href="{{ url_for('users.logout') }}">Logout</a>
+        </li>
+      {% else %}
+        <li class="">
+          <a class="" href="{{ url_for('users.login') }}">Login</a>
+        </li>
+        <li class="">
+          <a class="" href="{{ url_for('users.register') }}">Register</a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>

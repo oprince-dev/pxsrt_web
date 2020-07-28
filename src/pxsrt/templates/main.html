@@ -11,6 +11,7 @@
     <title>pxsrt</title>
   </head>
   <body>
+    {% block topNav %}{% endblock topNav %}
     {% if current_user.is_authenticated %}
       {% block leftSideNav %}{% endblock leftSideNav %}
       {% block toolbar %}{% endblock toolbar %}
