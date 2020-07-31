@@ -4,6 +4,7 @@ from pxsrt import db
 from pxsrt.models import Upload
 from pxsrt.images.utils import crop_thumbnail, save_image, instantiate_pxsrt_obj
 from pxsrt.images.forms import UploadForm, ToolsForm
+from multiprocessing import Pool
 
 
 images = Blueprint('images', __name__)
@@ -41,13 +42,23 @@ def image(upload_id):
         pxsrt_obj.read_thresh()
 
         if 'preview' in request.form:
-            pass
+            t_filename = pxsrt_obj.generate_thresh()
+            image.t_filename = t_filename
+            db.session.commit()
+            return redirect(url_for('images.preview', upload_id=upload_id))
         elif 'sort' in request.form:
-            pass
+            pxsrt_obj.sort_pixels()
+
         elif 'refresh' in request.form:
             pass
 
     return render_template('image.html', image=image, tools_form=tools_form)
+
+@images.route('/image/<int:upload_id>/preview', methods=['GET', 'POST'])
+@login_required
+def preview(upload_id):
+    image = Upload.query.get_or_404(upload_id)
+    return render_template('preview.html', image=image)
 
 @images.route('/image/<int:image_id>/delete', methods=['POST'])
 @login_required

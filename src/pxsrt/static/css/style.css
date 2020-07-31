@@ -173,4 +173,17 @@ legend {
   position: fixed;
   right: 0;
   color: white;
+  padding: 1rem 1.5rem;
+}
+
+#thresholdFormGroup #threshold {
+  padding: 0;
+}
+
+#submitButtonGroup {
+  margin: 0;
+}
+
+#submitButtonGroup input {
+  margin-right: 1rem;
 }

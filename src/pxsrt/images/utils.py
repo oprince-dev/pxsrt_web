@@ -2,6 +2,7 @@ import os
 import secrets
 from PIL import Image
 from pxsrt import app
+from pxsrt.pxsrt import PxSrt
 
 
 def crop_thumbnail(upload):

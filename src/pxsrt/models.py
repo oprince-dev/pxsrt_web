@@ -18,8 +18,10 @@ class User(db.Model, UserMixin):
 
 class Upload(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    filename = db.Column(db.String(20), unique=True, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    filename = db.Column(db.String(20), unique=True, nullable=False)
+    t_filename = db.Column(db.String(20), unique=True, nullable=True)
+    s_filename =  db.Column(db.String(20), unique=True, nullable=True)
 
     def __repr__(self):
         return f"Upload('{self.filename}')"
