@@ -25,6 +25,27 @@ class PxSrt:
             print(e)
             exit()
 
+    def save(self, flag):
+        t_path = 'src/pxsrt/static/img/thresh'
+        s_path = 'src/pxsrt/static/img/sorts'
+        if not os.path.exists(t_path):
+            os.makedirs(t_path)
+        if not os.path.exists(s_path):
+            os.makedirs(s_path)
+
+        base, ext = os.path.splitext(os.path.basename(self.file))
+        if flag == 'thresh':
+            self.t_filename = base + "_thresh" + ext
+            t_filepath = os.path.join(t_path, self.t_filename)
+            self.t_image.save(t_filepath)
+        elif flag == 'sort':
+            self.s_filename = base + '_' + str(self.mode) + str(self.direction) + str(self.threshold) + \
+                str(self.reverse) + str(self.upper) + ext
+            s_filepath = os.path.join(s_path, self.s_filename)
+            self.s_image.save(s_filepath)
+        else:
+            print("flag error")
+
 
     def read_thresh(self):
         thresh_data = np.copy(self.data)
@@ -49,18 +70,12 @@ class PxSrt:
 
 
     def generate_thresh(self):
-        t_path = 'src/pxsrt/static/img/thresh'
-        base, ext = os.path.splitext(os.path.basename(self.file))
-        t_filename = base + "_thresh" + ext
-        if not os.path.exists(t_path):
-            os.makedirs(t_path)
-        t_filepath = os.path.join(t_path, t_filename)
-        t_image = Image.fromarray(self.thresh_data, mode='HSV').convert('RGB')
-        t_image.save(t_filepath)
+        self.t_image = Image.fromarray(self.thresh_data, mode='HSV').convert('RGB')
+        self.save("thresh")
 
-        return t_filename
+        return self.t_filename
 
-#################
+
     def mode_index(self):
         modes = {'H': 0, 'S': 1, 'V':2, 'R': 0, 'G': 1, 'B':2}
 
@@ -96,8 +111,8 @@ class PxSrt:
             sorted_partition = self.quicksort(partition_array, m)
             sorted_row = np.append(sorted_row, np.array(sorted_partition), axis=0)
 
-        print(sorted_row.shape)
         return sorted_row
+
 
     def sort_pixels(self):
         sorted_pixels = []
@@ -108,6 +123,7 @@ class PxSrt:
         sorted_pixels = np.asarray(sorted_pixels, dtype=object)
         if self.direction.lower() == 'v':
             sorted_pixels = np.transpose(sorted_pixels, (1,0,2))
-        output = Image.fromarray((sorted_pixels).astype(np.uint8))
-        output = output.convert("RGB")
-        output.show()
+        self.s_image = Image.fromarray((sorted_pixels).astype(np.uint8)).convert("RGB")
+        self.save("sort")
+
+        return self.s_filename

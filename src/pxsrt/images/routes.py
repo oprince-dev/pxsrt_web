@@ -45,20 +45,31 @@ def image(upload_id):
             t_filename = pxsrt_obj.generate_thresh()
             image.t_filename = t_filename
             db.session.commit()
-            return redirect(url_for('images.preview', upload_id=upload_id))
+            return redirect(url_for('images.view_thresh', upload_id=upload_id))
+
         elif 'sort' in request.form:
-            pxsrt_obj.sort_pixels()
+            s_filename = pxsrt_obj.sort_pixels()
+            image.s_filename = s_filename
+            db.session.commit()
+            return redirect(url_for('images.view_sort', upload_id=upload_id))
 
         elif 'refresh' in request.form:
+            # Future AJAX
             pass
 
     return render_template('image.html', image=image, tools_form=tools_form)
 
 @images.route('/image/<int:upload_id>/preview', methods=['GET', 'POST'])
 @login_required
-def preview(upload_id):
+def view_thresh(upload_id):
     image = Upload.query.get_or_404(upload_id)
-    return render_template('preview.html', image=image)
+    return render_template('viewThresh.html', image=image)
+
+@images.route('/image/<int:upload_id>/sorted', methods=['GET', 'POST'])
+@login_required
+def view_sort(upload_id):
+    image = Upload.query.get_or_404(upload_id)
+    return render_template('viewSort.html', image=image)
 
 @images.route('/image/<int:image_id>/delete', methods=['POST'])
 @login_required
