@@ -1,13 +1,14 @@
 :root {
   font-size: 16px;
   --text-primary: #fff;
-  --bg-primary: #333;
-  --bg-secondary: #111;
+  --bg-primary: #FFECF6;
+  --bg-secondary: #99D3DD;
+  --sidebar-primary: #111;
   --transition-speed: 100ms;
 }
 
 body {
-  background: #333;
+  background-color: var(--bg-secondary);
   margin: 0;
   padding: 0;
   width: 100vw;
@@ -26,6 +27,9 @@ body::-webkit-scrollbar-thumb {
   background: #111;
 }
 
+main {
+  background-color: white;
+}
 
 header a {
   color:white;
@@ -42,7 +46,7 @@ header a:hover {
 }
 
 .container {
-  padding-top: 30px;
+  padding: 3rem 2rem;
 }
 
 #loginButton, #registerButton {
@@ -78,7 +82,7 @@ legend {
 .sidebar {
   z-index: 1;
   height: 100vh;
-  background-color: var(--bg-secondary);
+  background-color: var(--sidebar-primary);
 }
 
 .navbar-nav {
@@ -92,8 +96,13 @@ legend {
 /* Top Nav */
 
 #topNav {
-  background-color: var(--bg-secondary);
-  /* padding: 0 16px; */
+  background-color: var(--sidebar-primary);
+  margin: 0 0 0 5rem;
+  padding: 0;
+}
+
+#topNav .container-fluid {
+  padding: 10px 15px;
 }
 
 #topNav a {
@@ -138,6 +147,12 @@ legend {
   min-height: 3rem;
   background: var(--text-primary);
   border-radius: 1.5rem;
+}
+
+.nav-profpic-container img {
+  max-width: 3rem;
+  max-height: 3rem;
+  border-radius: 50%;
 }
 
 .nav-link-icon {

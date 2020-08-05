@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
 class Upload(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    filename = db.Column(db.String(20), unique=True, nullable=False)
+    filename = db.Column(db.String(20), unique=False, nullable=False)
     t_filename = db.Column(db.String(20), unique=True, nullable=True)
     s_filename =  db.Column(db.String(20), unique=True, nullable=True)
 

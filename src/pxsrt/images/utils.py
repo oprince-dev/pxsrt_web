@@ -6,23 +6,29 @@ from pxsrt.pxsrt import PxSrt
 
 
 def crop_thumbnail(upload):
+    fname = upload.filename
     img = Image.open(upload)
-    img = img.crop(((img.width - min(img.size)) // 2,
+    cropped = img.crop(((img.width - min(img.size)) // 2,
                     (img.height - min(img.size)) // 2,
                     (img.width + min(img.size)) // 2,
                     (img.height + min(img.size)) // 2))
     thumbnail_size = (100, 100)
-    img.thumbnail(thumbnail_size)
-    return img
+    cropped.thumbnail(thumbnail_size)
+    return cropped, fname
 
 
 def save_image(upload, folder):
-    path = os.path.join(app.root_path, 'static/img/' + folder, upload.filename)
+    path = os.path.join(app.root_path, 'static/img/' + folder)
+    if not os.path.exists(path):
+        os.makedirs(path)
+    filepath = os.path.join(path, upload.filename)
     if folder == 'profpics':
-        upload = crop_thumbnail(upload)
-    upload.save(path)
-    return upload.filename
-
+        cropped, fname = crop_thumbnail(upload)
+        cropped.save(filepath)
+        return fname
+    else:
+        upload.save(filepath)
+        return upload.filename
 
 def instantiate_pxsrt_obj(filename):
     file = os.path.join(app.config['UPLOADED_IMAGES_DEST'], filename)
