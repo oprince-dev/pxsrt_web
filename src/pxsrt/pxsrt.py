@@ -12,7 +12,7 @@ class PxSrt:
 
     def set_user_choices(self, mode, threshold, direction, reverse, upper):
         self.mode = mode
-        self.threshold = threshold
+        self.threshold = int(threshold)
         self.direction = direction
         self.upper = upper
         self.reverse = reverse
