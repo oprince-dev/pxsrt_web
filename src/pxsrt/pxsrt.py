@@ -17,6 +17,7 @@ class PxSrt:
         self.upper = upper
         self.reverse = reverse
 
+
     def load_image_data(self):
         try:
             with Image.open("/home/oli/Projects/pxsrt_web/src/" + str(self.file)) as img:
@@ -50,7 +51,7 @@ class PxSrt:
     def read_thresh(self):
         thresh_data = np.copy(self.data)
 
-        if self.upper:
+        if self.upper == "True":
             thresh_data[thresh_data >= self.threshold] = 255
             thresh_data[thresh_data != 255] = 0
         else:
@@ -83,7 +84,7 @@ class PxSrt:
 
     def quicksort(self, partition_array, m):
         sorted_partition = partition_array[partition_array[:,m].argsort()]
-        if self.reverse:
+        if self.reverse == "True":
             sorted_partition = sorted_partition[::-1]
 
         return sorted_partition

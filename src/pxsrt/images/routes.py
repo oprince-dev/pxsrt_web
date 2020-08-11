@@ -42,8 +42,8 @@ def view_thresh():
                                 request.form['mode'],
                                 request.form['threshold'],
                                 request.form['direction'],
-                                None,
-                                None
+                                request.form['upper'],
+                                request.form['reverse']
     )
     pxsrt_obj.read_thresh()
     t_filename = pxsrt_obj.generate_thresh()

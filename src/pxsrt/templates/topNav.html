@@ -1,7 +1,9 @@
 <nav class="navbar navbar-expand-sm" id="topNav">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a href="#">PxSrt</a>
+      <a href="/">
+        <img src="{{ url_for('static', filename='icons/PxSrt.svg') }}" alt="Home" id="PxSrt-logo">
+      </a>
     </div>
     <ul class="nav navbar-nav navbar-right">
       {% if current_user.is_authenticated %}

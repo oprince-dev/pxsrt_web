@@ -73,6 +73,7 @@ legend {
   height: 33%;
   overflow: hidden;
   position: relative;
+  padding-bottom: 20px;
 }
 
 #imgpg-img {
@@ -94,6 +95,11 @@ legend {
   align-items: center;
 }
 /* Top Nav */
+
+#PxSrt-logo {
+  max-width: 5rem;
+  fill: var(--text-primary);
+}
 
 #topNav {
   background-color: var(--sidebar-primary);
@@ -193,12 +199,17 @@ legend {
 
 #thresholdFormGroup #threshold {
   padding: 0;
+  width: 100%;
 }
 
 #submitButtonGroup {
   margin: 0;
 }
 
-#submitButtonGroup input {
+.toolButton {
   margin-right: 1rem;
+}
+
+.update-options {
+  margin-top: 15px;
 }
