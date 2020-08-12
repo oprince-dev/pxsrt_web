@@ -75,7 +75,7 @@ $(document).ready(function () {
       req = $.ajax({
         url: '/image/sort',
         type: 'POST',
-        data: { image_id : image_id, mode : mode, threshold : threshold, direction : direction }
+        data: { image_id : image_id, mode : mode, threshold : threshold, direction : direction, upper : upper, reverse : reverse }
       });
 
       req.done(function(data) {
