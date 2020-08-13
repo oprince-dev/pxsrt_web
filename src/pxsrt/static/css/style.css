@@ -1,17 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 :root {
   font-size: 16px;
   --text-primary: #fff;
   --bg-primary: #FFECF6;
   --bg-secondary: #99D3DD;
-  --sidebar-primary: #111;
+  --sidebar-primary: #080808;
+  --sidebar-secondary: #111111;
+  --link-primary: #305986;
+  --link-secondary: #6BB0DD;
   --transition-speed: 100ms;
 }
 
 body {
   background-color: var(--bg-secondary);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
   margin: 0;
   padding: 0;
-  width: 100vw;
   height: 100vh;
 }
 
@@ -28,25 +33,51 @@ body::-webkit-scrollbar-thumb {
 }
 
 main {
-  background-color: white;
+  width: 100vw;
+  height: 100vh;
+  display: inline-flex;
 }
 
 header a {
   color:white;
 }
 header a:hover {
-  color:grey;
+
 }
 
 .content {
   background: white;
-  padding: 20px 30px;
-  margin: 0%;
+  padding: 0 5rem;
   width: 100%;
 }
 
-.container {
+.main-container {
+  flex-basis: 100%;
+  height: 100vh;
+  padding: 0;
+}
+
+.imgpg-header {
+  display: inline-flex;
+}
+
+.imgpg-header h3 {
+  margin: 0 2rem;
+  font-weight: 500;
+}
+
+.imgpg-container {
+  align-items: center;
+  background-color: white;
   padding: 3rem 2rem;
+  margin: 0 20%;
+}
+.imgpg-container img {
+  display: block;
+  max-width: 100%;
+  max-height: 80vh;
+  margin: auto;
+  align-content: center;
 }
 
 #loginButton, #registerButton {
@@ -66,6 +97,7 @@ legend {
 }
 
 #user-info-row {
+  display: inline-flex;
   margin: 0 0 30px;
 }
 
@@ -76,14 +108,11 @@ legend {
   padding-bottom: 20px;
 }
 
-#imgpg-img {
-  max-height: 75vh;
-}
+
 
 .sidebar {
   z-index: 1;
-  height: 100vh;
-  background-color: var(--sidebar-primary);
+  background-color: var(--sidebar-secondary);
 }
 
 .navbar-nav {
@@ -103,8 +132,8 @@ legend {
 
 #topNav {
   background-color: var(--sidebar-primary);
-  margin: 0 0 0 5rem;
-  padding: 0;
+  margin: 0;
+  padding: 0 0 0 5rem;
 }
 
 #topNav .container-fluid {
@@ -113,13 +142,14 @@ legend {
 
 #topNav a {
   text-decoration: none;
-  color: var(--text-primary);
+  color:  var(--link-secondary);
   margin: 0 1.25rem;
 }
 
 /* Left Side Nav */
 
 #left-sidenav {
+  height: 100vh;
   width: 5rem;
   position: fixed;
   left: 0;
@@ -190,11 +220,34 @@ legend {
 
 
 #toolbar {
-  width: 30rem;
-  position: fixed;
+  flex-basis: 20%;
+  height: 100vh;
   right: 0;
   color: white;
   padding: 1rem 1.5rem;
+}
+
+@media screen and (max-width: 992px) {
+  main {
+    height: 50%;
+  }
+
+  #toolbar {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 50%;
+    width: 100vw;
+  }
+
+}
+
+#toolbar input[type=radio] {
+  margin: .25rem 1rem .25rem 0;
+}
+
+#toolbar input[type=checkbox] {
+  margin: .25rem 1rem .25rem 0;
 }
 
 #thresholdFormGroup #threshold {
@@ -202,14 +255,21 @@ legend {
   width: 100%;
 }
 
+.checkboxContainer {
+  padding: 0;
+}
+
 #submitButtonGroup {
-  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .toolButton {
-  margin-right: 1rem;
+  width: 100%;
 }
 
 .update-options {
-  margin-top: 15px;
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
 }

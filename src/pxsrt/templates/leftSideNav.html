@@ -1,12 +1,11 @@
 {% block leftSideNav %}
+{% if current_user.is_authenticated %}
   <nav class="sidebar" id="left-sidenav">
     <ul class="navbar-nav">
       <li class="nav-item">
         <a href="{{ url_for('users.account') }}" class="nav-link">
           <div class="nav-profpic-container">
-            {% if current_user.is_authenticated %}
             <img src="{{ url_for('static', filename='img/profpics/' + current_user.profpic) }}" alt="">
-            {% endif %}
           </div>
           <span class="link-text">{{ current_user.username }}</span>
         </a>
@@ -25,4 +24,5 @@
       </li>
     </ul>
   </nav>
+{% endif %}
 {% endblock leftSideNav %}

@@ -12,24 +12,25 @@
   </head>
   <body>
     {% block topNav %}{% endblock topNav %}
-    {% if current_user.is_authenticated %}
-      {% block leftSideNav %}{% endblock leftSideNav %}
-      {% block toolbar %}{% endblock toolbar %}
-    {% endif %}
 
-    <main class="container container-lg-border">
-      {% with messages = get_flashed_messages(with_categories=True) %}
-        {% if messages %}
-          {% for category, message in messages %}
-          <div class="alert alert-{{category}}">
-            {{message}}
-          </div>
-          {% endfor %}
-        {% endif %}
-      {% endwith %}
-
-      {% block content %}{% endblock content %}
-
+    <main>
+      <div class="main-container">
+        <div class="imgpg-container">
+          {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+              {% for category, message in messages %}
+              <div class="alert alert-{{category}}">
+                {{message}}
+              </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+          {% block content %}{% endblock content %}
+        </div>
+      </div>
+      {% if current_user.is_authenticated %}
+        {% block toolbar %}{% endblock toolbar %}
+      {% endif %}
     </main>
   <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
   <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>

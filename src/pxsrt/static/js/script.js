@@ -68,8 +68,8 @@ $(document).ready(function () {
       var image_id = $(this).attr('image_id');
       var mode = $('#mode').val();
       var threshold = $('#threshold').val()
-      var direction = $('input[name="direction"]').val();
-      var upper = $('#upper').val();
+      var direction = $('input[name="direction"]:checked').val();
+      var upper = $('#upper').attr('value');
       var reverse = $('#reverse').val();
 
       req = $.ajax({
