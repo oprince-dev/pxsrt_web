@@ -1,8 +1,9 @@
-from flask import render_template, request, Blueprint
+from flask import render_template, Blueprint
 from pxsrt.models import Upload
 
 
 main = Blueprint('main', __name__)
+
 
 @main.route('/')
 def home():

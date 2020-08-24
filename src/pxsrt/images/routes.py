@@ -1,13 +1,20 @@
-from flask import render_template, url_for, flash, redirect, request, abort, Blueprint, jsonify, make_response
+from flask import render_template
+from flask import url_for
+from flask import flash
+from flask import redirect
+from flask import request
+from flask import abort
+from flask import Blueprint
+from flask import jsonify
 from flask_login import current_user, login_required
 from pxsrt import db
 from pxsrt.models import Upload
-from pxsrt.images.utils import crop_thumbnail, save_image, instantiate_pxsrt_obj
+from pxsrt.images.utils import save_image, instantiate_pxsrt_obj
 from pxsrt.images.forms import UploadForm
-from multiprocessing import Pool
 
 
 images = Blueprint('images', __name__)
+
 
 @images.route('/upload', methods=['GET', 'POST'])
 @login_required
@@ -31,6 +38,7 @@ def image(upload_id):
 
     return render_template('image.html', image=image)
 
+
 @images.route('/image/preview', methods=['POST'])
 @login_required
 def view_thresh():
@@ -50,7 +58,12 @@ def view_thresh():
     image.t_filename = t_filename
     db.session.commit()
 
-    return jsonify({'result' : 'success', 'path' : 'img/thresh/', 'filename' : t_filename})
+    return jsonify({
+            'result': 'success',
+            'path': 'img/thresh/',
+            'filename': t_filename
+            })
+
 
 @images.route('/image/sort', methods=['POST'])
 @login_required
@@ -71,7 +84,12 @@ def view_sort():
     image.s_filename = s_filename
     db.session.commit()
 
-    return jsonify({'result' : 'success', 'path' : 'img/sorts/', 'filename' : s_filename})
+    return jsonify({
+            'result': 'success',
+            'path': 'img/sorts/',
+            'filename': s_filename
+            })
+
 
 @images.route('/image/refresh', methods=['POST'])
 @login_required
@@ -79,7 +97,12 @@ def refresh():
     upload_id = request.form['image_id']
     image = Upload.query.get_or_404(upload_id)
 
-    return jsonify({'result' : 'success', 'path' : 'img/uploads/', 'filename' : image.filename})
+    return jsonify({
+            'result': 'success',
+            'path': 'img/uploads/',
+            'filename': image.filename
+            })
+
 
 @images.route('/image/<int:image_id>/delete', methods=['POST'])
 @login_required

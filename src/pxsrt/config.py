@@ -1,5 +1,3 @@
-import os
-
 class Config:
     SECRET_KEY = '19876e6891d3a956529578b0e5d34a88'
     SQLALCHEMY_DATABASE_URI = 'sqlite:///site.db'
