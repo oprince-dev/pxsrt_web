@@ -9,13 +9,13 @@
 ![Mock Design (Adobe XD)](src/pxsrt/static/img/mocks/mock-design.jpg)
 
 ## Setup (local)
-#### Step 1:
+### Step 1:
 ```
 pip3 install -r requirements.txt
 python3 src/run.py
 ```
-#### Step 2:
-Browse to localhost:5000 in your browser.
+### Step 2:
+* Browse to localhost:5000 in your browser.
 
 ## Features
 
