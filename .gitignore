@@ -1,12 +1,6 @@
 __pycache__
 /venv
-/images
-/clipboard
-/node_modules
 src/pxsrt/static/img/profpics/*
 src/pxsrt/static/img/uploads/*
 src/pxsrt/static/img/thresh/*
 src/pxsrt/static/img/sorts/*
-src/pxsrt/static/img/test.jpg
-site.db
-package.json
