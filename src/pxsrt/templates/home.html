@@ -13,11 +13,13 @@
       {% endfor %}
   </div>
 {% else %}
-  <a class="landing-logo-container" href="/login">
-    <svg xmlns="http://www.w3.org/2000/svg" width="373" height="158" viewBox="0 0 373 158">
-      <text id="PxSrt" transform="translate(5 120)" fill="#fff" font-size="150" font-family="FrankRuehlCLM-BoldOblique, Frank Ruehl CLM BoldOblique" font-weight="700" font-style="oblique"><tspan x="0" y="0">PxSrt</tspan></text>
-    </svg>
-  </a>
+  <div class="landing-logo-container">
+    <a href="/login">
+      <svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200">
+        <text id="PxSrt" transform="translate(0 150)" font-size="150" font-style="oblique"><tspan x="0" y="0">PxSrt</tspan></text>
+      </svg>
+    </a>
+  </div>
   <div class="landing-img-container"></div>
 {% endif %}
 {% endblock content %}

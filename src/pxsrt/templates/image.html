@@ -2,10 +2,29 @@
 {% include "leftSideNav.html" %}
 {% include "topNav.html" %}
 {% block content %}
-  <div class="imgpg-header row">
-    <h3>{{image.filename}}</h3>
+  <div class="imgpg-header">
+    <h4>{{image.filename}}</h4>
   </div>
   <img id="imgpg-img" src="{{ url_for('static', filename='img/uploads/' + image.filename) }}" alt="">
+  <!-- Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Delete Image?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <form action="{{ url_for('images.delete_image', image_id=image.id) }}" method="post">
+            <input class="btn btn-danger" type="submit" value="Delete">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock content %}
 {% block toolbar %}
   <div class="sidebar" id="toolbar">
@@ -64,25 +83,6 @@
     </form>
     <div class="update-options">
       <button type="button" class="btn btn-danger btn-md" data-toggle="modal" data-target="#deleteModal">Delete</button>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="deleteModalLabel">Delete Image?</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <form action="{{ url_for('images.delete_image', image_id=image.id) }}" method="post">
-              <input class="btn btn-danger" type="submit" value="Delete">
-            </form>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 {% endblock toolbar %}

@@ -55,19 +55,15 @@ class PxSrt:
 
         if self.upper == "True":
             thresh_data[thresh_data >= self.threshold] = 255
-            thresh_data[thresh_data != 255] = 0
         else:
             thresh_data[thresh_data < self.threshold] = 255
-            thresh_data[thresh_data != 255] = 0
+        thresh_data[thresh_data != 255] = 0
 
         if self.mode == 'H' or 'R':
             thresh_data = np.flip(thresh_data, axis=2)
-            thresh_data[:, :, :2] = 0
         elif self.mode == 'S' or 'G':
             thresh_data = np.roll(thresh_data, 1, axis=2)
-            thresh_data[:, :, :2] = 0
-        else:
-            thresh_data[:, :, :2] = 0
+        thresh_data[:, :, :2] = 0
 
         self.thresh_data = thresh_data
 

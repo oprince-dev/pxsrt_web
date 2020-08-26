@@ -20,10 +20,8 @@ def login():
                                                form.password.data):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
-            if next_page:
-                return redirect(next_page)
-            else:
-                redirect(url_for('main.home'))
+            return redirect(next_page) if next_page else redirect(
+                    url_for('main.home'))
 
         else:
             flash('Login Failed', 'danger')
