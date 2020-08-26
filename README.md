@@ -1,6 +1,7 @@
 # PxSrt Web Application
 
 ## About
+
 > PxSrt is an application that allows you to sort the pixels in an image of your choosing.
 
 ![Mock Landing Page](src/pxsrt/static/img/mocks/mock-landing.jpg)
